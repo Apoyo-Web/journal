@@ -12,8 +12,8 @@ export const RegisterScreen = () => {
                 <input type="text" placeholder="email" name="email" className="auth__input" autoComplete="off"/>
                 <input type="password" placeholder="Password" name="password" className="auth__input" />
                 <input type="password" placeholder="Confirm Password" name="password2" className="auth__input" />
-                <button type="submit" className="btn btn-primary btn-block mb-5" disabled={true} >
-                    Login
+                <button type="submit" className="btn btn-primary btn-block mb-5"  >
+                    Register
                 </button>
 
         
