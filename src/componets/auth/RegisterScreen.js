@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import validator from 'validator'
-import {useDispatch } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 import { removeError, setError } from '../../actions/ui'
 
 
@@ -10,6 +10,8 @@ import { removeError, setError } from '../../actions/ui'
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch()
+    const {msgError} = useSelector(state => state.ui);
+    
     
     const [formValues, handleInputChange] = useForm({
         name: "",
@@ -53,8 +55,18 @@ export const RegisterScreen = () => {
            <h3 className="auth__title">Register</h3> 
         </div>
             <form onSubmit={handleRegister}>
+                {
+                    msgError &&
+                        
+                        <div className="auth__alert-error"> {msgError} </div>
+                    
 
-                <div className="auth__alert-error"> Hola Mundo </div>
+                }
+
+
+
+
+
                 <input type="text" placeholder="name" name="name" className="auth__input" autoComplete="off" value={name} onChange={ handleInputChange}/>
                 <input type="text" placeholder="email" name="email" className="auth__input" autoComplete="off" value={email } onChange={ handleInputChange}/>
                 <input type="password" placeholder="Password" name="password" className="auth__input" value={ password} onChange={ handleInputChange}/>
