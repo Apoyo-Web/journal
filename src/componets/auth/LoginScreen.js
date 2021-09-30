@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import {useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import validator from 'validator'
-import { login, startGoogleLogn, startLoginEmailPassword } from '../../actions/auth'
+import {  startGoogleLogn, startLoginEmailPassword } from '../../actions/auth'
 import { removeError, setError } from '../../actions/ui'
 
 export const LoginScreen = () => {
 
     const dispatch = useDispatch()
-    const {msgError} = useSelector(state => state.ui);
+    const {msgError, loading} = useSelector(state => state.ui);
 
 
     const [formValues, handleInputChange] = useForm({
@@ -63,7 +63,7 @@ export const LoginScreen = () => {
 
                 <input type="text" placeholder="email" name="email" className="auth__input" autoComplete="off" value={email} onChange={ handleInputChange}/>
                 <input type="password" placeholder="Password" name="password" className="auth__input" value={password} onChange={handleInputChange} />
-                <button type="submit" className="btn btn-primary btn-block" >
+                <button type="submit" className="btn btn-primary btn-block" disabled ={loading}>
                     Login
                 </button>
 
