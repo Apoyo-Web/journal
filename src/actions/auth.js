@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from '@firebase/auth';
 import {  googleAuthProvider } from '../firebase/firebaseConfig.js';
 import { types} from '../types/types.js'
 import { finishLoading, startLoading } from './ui.js';
@@ -59,5 +59,25 @@ export const startRegisterWithEmail= (email, password, name) => {
             .catch(e => {
                 console.log(e)
             })
+    }
+}
+
+
+export const startLogout = () => {
+    
+    const auth = getAuth();
+    return async (dispatch) => {
+    
+        await signOut(auth);
+        dispatch(logout())
+
+}
+}
+
+
+export const logout = () => {
+    
+    return {
+        type: types.logout
     }
 }
